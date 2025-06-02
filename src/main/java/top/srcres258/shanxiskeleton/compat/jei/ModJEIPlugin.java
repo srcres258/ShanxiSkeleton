@@ -40,9 +40,12 @@ public class ModJEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(@NotNull IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.WITHER_SKELETON_PRODUCER));
-        registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.WITHER_SKELETON_BREEDER));
-        registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.WITHER_SKELETON_SLAUGHTERER));
+        registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.WITHER_SKELETON_PRODUCER),
+                CATEGORY_WITHER_SKELETON_PRODUCER_FOR_WITHER_SKELETON, CATEGORY_WITHER_SKELETON_PRODUCER_FOR_ROSES);
+        registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.WITHER_SKELETON_BREEDER),
+                CATEGORY_WITHER_SKELETON_BREEDER);
+        registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.WITHER_SKELETON_SLAUGHTERER),
+                CATEGORY_WITHER_SKELETON_SLAUGHTERER);
     }
 
     @Override

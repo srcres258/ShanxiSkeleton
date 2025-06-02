@@ -56,7 +56,7 @@ public class WitherSkeletonSlaughtererRecipeCategory implements IRecipeCategory<
 
         outputSlots = new IRecipeSlotBuilder[OUTPUT_SLOTS_COUNT];
         for (i = 0; i < OUTPUT_SLOTS_COUNT; i++) {
-            outputSlots[i] = builder.addSlot(RecipeIngredientRole.OUTPUT, 80 + i * 24, 20);
+            outputSlots[i] = builder.addSlot(RecipeIngredientRole.OUTPUT, 80 + i * 18, 20);
         }
         outputSlots[0].addIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Items.COAL));
         outputSlots[1].addIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModItems.TINY_COAL.get()));
