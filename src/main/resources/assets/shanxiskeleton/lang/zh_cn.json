@@ -1,0 +1,18 @@
+{
+    "item.shanxiskeleton.wither_skeleton_catcher": "凋灵骷髅捕捉器",
+    "item.shanxiskeleton.wither_skeleton": "凋灵骷髅",
+    "item.shanxiskeleton.tiny_coal": "小块煤炭",
+
+    "block.shanxiskeleton.wither_skeleton_producer": "凋灵骷髅生产器",
+    "block.shanxiskeleton.wither_skeleton_breeder": "凋灵骷髅繁殖器",
+    "block.shanxiskeleton.wither_skeleton_slaughterer": "凋灵骷髅屠宰器",
+    "block.shanxiskeleton.frame_block": "框架方块",
+
+    "creativetab.shanxiskeleton.mod_tab": "山西骷髅",
+
+    "gui.shanxiskeleton.progress": "进度：%1$s%%",
+
+    "jei.shanxiskeleton.recipe.wither_skeleton_producer": "凋灵骷髅生产",
+    "jei.shanxiskeleton.recipe.wither_skeleton_breeder": "凋灵骷髅繁殖",
+    "jei.shanxiskeleton.recipe.wither_skeleton_slaughterer": "凋灵骷髅屠宰"
+}

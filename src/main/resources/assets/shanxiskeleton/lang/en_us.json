@@ -1,0 +1,18 @@
+{
+    "item.shanxiskeleton.wither_skeleton_catcher": "Wither Skeleton Catcher",
+    "item.shanxiskeleton.wither_skeleton": "Wither Skeleton",
+    "item.shanxiskeleton.tiny_coal": "Tiny Coal",
+
+    "block.shanxiskeleton.wither_skeleton_producer": "Wither Skeleton Producer",
+    "block.shanxiskeleton.wither_skeleton_breeder": "Wither Skeleton Breeder",
+    "block.shanxiskeleton.wither_skeleton_slaughterer": "Wither Skeleton Slaughterer",
+    "block.shanxiskeleton.frame_block": "Frame Block",
+
+    "creativetab.shanxiskeleton.mod_tab": "Shanxi Skeleton",
+
+    "gui.shanxiskeleton.progress": "Progress: %1$s%%",
+
+    "jei.shanxiskeleton.recipe.wither_skeleton_producer": "Wither Skeleton Producing",
+    "jei.shanxiskeleton.recipe.wither_skeleton_breeder": "Wither Skeleton Breeding",
+    "jei.shanxiskeleton.recipe.wither_skeleton_slaughterer": "Wither Skeleton Slaughtering"
+}
