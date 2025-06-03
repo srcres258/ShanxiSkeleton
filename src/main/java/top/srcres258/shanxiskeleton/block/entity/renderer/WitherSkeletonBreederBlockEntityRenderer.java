@@ -123,7 +123,7 @@ public class WitherSkeletonBreederBlockEntityRenderer extends WitherSkeletonBloc
 
         poseStack.pushPose();
         transformPoseStackForTinyBlockRendering(poseStack, direction);
-        poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
+        poseStack.mulPose(Axis.YP.rotationDegrees(90F));
         poseStack.translate(-0.5 / 0.4 + 0.5, 0.0, 0.5 / 0.4);
         bedRenderer.render(bed, 1F, poseStack, bufferSource, packedLight, packedOverlay);
         poseStack.popPose();
