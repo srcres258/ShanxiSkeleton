@@ -11,8 +11,12 @@
     "creativetab.shanxiskeleton.mod_tab": "山西骷髅",
 
     "gui.shanxiskeleton.progress": "进度：%1$s%%",
+    "gui.shanxiskeleton.progress_without_number": "进度",
+    "gui.shanxiskeleton.byproduct_progress_without_number": "副产物进度",
 
     "jei.shanxiskeleton.recipe.wither_skeleton_producer": "凋灵骷髅生产",
     "jei.shanxiskeleton.recipe.wither_skeleton_breeder": "凋灵骷髅繁殖",
-    "jei.shanxiskeleton.recipe.wither_skeleton_slaughterer": "凋灵骷髅屠宰"
+    "jei.shanxiskeleton.recipe.wither_skeleton_slaughterer": "凋灵骷髅屠宰",
+
+    "config.jade.plugin_shanxiskeleton.machine": "凋灵骷髅机器"
 }

@@ -11,8 +11,12 @@
     "creativetab.shanxiskeleton.mod_tab": "Shanxi Skeleton",
 
     "gui.shanxiskeleton.progress": "Progress: %1$s%%",
+    "gui.shanxiskeleton.progress_without_number": "Progress",
+    "gui.shanxiskeleton.byproduct_progress_without_number": "Byproduct Progress",
 
     "jei.shanxiskeleton.recipe.wither_skeleton_producer": "Wither Skeleton Producing",
     "jei.shanxiskeleton.recipe.wither_skeleton_breeder": "Wither Skeleton Breeding",
-    "jei.shanxiskeleton.recipe.wither_skeleton_slaughterer": "Wither Skeleton Slaughtering"
+    "jei.shanxiskeleton.recipe.wither_skeleton_slaughterer": "Wither Skeleton Slaughtering",
+
+    "config.jade.plugin_shanxiskeleton.machine": "Wither Skeleton Machine"
 }

@@ -38,8 +38,6 @@ public class ModProbeInfoProvider implements IProbeInfoProvider {
     ) {
         BlockEntity blockEntity;
         IItemHandler inputs, outputs;
-        int i;
-        ItemStack stack;
 
         blockEntity = level.getBlockEntity(probeHitData.getPos());
         if (blockEntity == null) {
@@ -49,22 +47,13 @@ public class ModProbeInfoProvider implements IProbeInfoProvider {
             inputs = machine.getMachineInputItemHandler();
             outputs = machine.getMachineOutputItemHandler();
             if (inputs != null) {
-                for (i = 0; i < inputs.getSlots(); i++) {
-                    stack = inputs.getStackInSlot(i);
-                    if (!stack.isEmpty()) {
-                        probeInfo.item(stack);
-                    }
-                }
+                addItemHandlerInfo(probeInfo, inputs);
             }
             if (outputs != null) {
-                for (i = 0; i < outputs.getSlots(); i++) {
-                    stack = outputs.getStackInSlot(i);
-                    if (!stack.isEmpty()) {
-                        probeInfo.item(stack);
-                    }
-                }
+                addItemHandlerInfo(probeInfo, outputs);
             }
         }
+
         switch (blockEntity) {
             case WitherSkeletonProducerBlockEntity producer:
                 probeInfo.progress(producer.getProgress(), producer.getMaxProgress());
@@ -77,6 +66,18 @@ public class ModProbeInfoProvider implements IProbeInfoProvider {
                 probeInfo.progress(slaughterer.getProgress(), slaughterer.getMaxProgress());
                 break;
             default:
+        }
+    }
+
+    private static void addItemHandlerInfo(@NotNull IProbeInfo probeInfo, @NotNull IItemHandler itemHandler) {
+        ItemStack stack;
+        int i;
+
+        for (i = 0; i < itemHandler.getSlots(); i++) {
+            stack = itemHandler.getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                probeInfo.item(stack);
+            }
         }
     }
 }
