@@ -37,7 +37,8 @@ public class ShanxiSkeleton {
     public final ClientConfig clientConfig;
 
     public ShanxiSkeleton(@NotNull IEventBus modEventBus, @NotNull ModContainer modContainer) {
-        LOGGER.info("{} is initializing...", MOD_ID);
+        LOGGER.info("{} ({}, version {}) is initializing...", modContainer.getModInfo().getDisplayName(), MOD_ID,
+                modContainer.getModInfo().getVersion().toString());
 
         instance = this;
 
