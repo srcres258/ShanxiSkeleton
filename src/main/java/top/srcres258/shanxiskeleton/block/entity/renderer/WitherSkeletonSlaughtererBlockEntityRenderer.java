@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.ChestRenderer;
 import net.minecraft.client.renderer.entity.WitherSkeletonRenderer;
+import net.minecraft.client.renderer.entity.state.SkeletonRenderState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
@@ -56,6 +57,7 @@ public class WitherSkeletonSlaughtererBlockEntityRenderer extends WitherSkeleton
         BlockEntityRendererProvider.Context context;
         WitherSkeletonRenderer witherSkeletonRenderer;
         WitherSkeleton witherSkeleton;
+        SkeletonRenderState renderState;
         int renderCount, i;
         Vec3 vec;
         ChestRenderer<ChestBlockEntity> chestRenderer;
@@ -72,6 +74,7 @@ public class WitherSkeletonSlaughtererBlockEntityRenderer extends WitherSkeleton
         if (blockEntity.hasInput()) {
             witherSkeletonRenderer = getWitherSkeletonRenderer();
             witherSkeleton = getWitherSkeleton();
+
             // 模拟凋灵骷髅的受伤动画。
             if (blockEntity.isWorking()) {
                 witherSkeleton.hurtTime = blockEntity.witherSkeletonHurtTime;
@@ -82,6 +85,7 @@ public class WitherSkeletonSlaughtererBlockEntityRenderer extends WitherSkeleton
                 witherSkeleton.hurtTime = 0;
             }
 
+            renderState = getWitherSkeletonRenderState();
             renderCount = getRenderingWitherSkeletonCount(blockEntity);
 
             for (i = 0; i < renderCount; i++) {
@@ -92,7 +96,7 @@ public class WitherSkeletonSlaughtererBlockEntityRenderer extends WitherSkeleton
                 poseStack.translate(vec.x, vec.y, vec.z);
                 poseStack.scale(0.3F, 0.3F, 0.3F);
                 poseStack.mulPose(Axis.YP.rotationDegrees(-90F));
-                witherSkeletonRenderer.render(witherSkeleton, 0F, 1F, poseStack, multiBufferSource, packedLight);
+                witherSkeletonRenderer.render(renderState, poseStack, multiBufferSource, packedLight);
                 poseStack.popPose();
             }
         }

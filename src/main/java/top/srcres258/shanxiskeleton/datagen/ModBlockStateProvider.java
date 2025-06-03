@@ -4,7 +4,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -48,7 +48,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void horizontalFacingBlockWithItem(
             @NotNull Block block,
-            @NotNull DirectionProperty directionProperty,
+            @NotNull EnumProperty<Direction> directionProperty,
             @NotNull Function<BlockState, ModelFile> modelFunc
     ) {
         BlockState defaultBlockState;

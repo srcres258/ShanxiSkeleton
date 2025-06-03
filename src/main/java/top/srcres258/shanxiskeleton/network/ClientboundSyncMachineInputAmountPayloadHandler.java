@@ -1,6 +1,7 @@
 package top.srcres258.shanxiskeleton.network;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +16,8 @@ import org.jetbrains.annotations.NotNull;
 import top.srcres258.shanxiskeleton.block.entity.custom.BaseMachineBlockEntity;
 import top.srcres258.shanxiskeleton.network.custom.ClientboundSyncMachineInputPayload;
 
+import java.util.Optional;
+
 public class ClientboundSyncMachineInputAmountPayloadHandler {
     public static void handleDataOnMain(
             @NotNull ClientboundSyncMachineInputPayload data,
@@ -28,6 +31,7 @@ public class ClientboundSyncMachineInputAmountPayloadHandler {
         ItemStack stack;
         ResourceLocation inputResLoc;
         Item item;
+        Optional<Holder.Reference<Item>> itemOpt;
 
         inputResLoc = ResourceLocation.tryParse(data.getInputResLoc());
         if (inputResLoc == null) {
@@ -36,7 +40,11 @@ public class ClientboundSyncMachineInputAmountPayloadHandler {
         if (!BuiltInRegistries.ITEM.containsKey(inputResLoc)) {
             return;
         }
-        item = BuiltInRegistries.ITEM.get(inputResLoc);
+        itemOpt = BuiltInRegistries.ITEM.get(inputResLoc);
+        if (itemOpt.isEmpty()) {
+            return;
+        }
+        item = itemOpt.get().value();
         stack = new ItemStack(item, data.getInputAmount());
 
         blockPos = new BlockPos(data.getBlockPosX(), data.getBlockPosY(), data.getBlockPosZ());

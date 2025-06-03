@@ -24,25 +24,9 @@ description='''${mod_description}'''
     ordering="NONE"
     side="BOTH"
 
-# Just Enough Items (JEI)
-[[dependencies.${mod_id}]]
-    modId="jei"
-    type="optional"
-    versionRange="[${jei_version},)"
-    ordering="AFTER"
-    side="BOTH"
-
-# The One Probe (TOP)
-[[dependencies.${mod_id}]]
-    modId="theoneprobe"
-    type="optional"
-    versionRange="[${theoneprobe_version},)"
-    ordering="AFTER"
-    side="BOTH"
-
 # Jade
 [[dependencies.${mod_id}]]
-    modId="jare"
+    modId="jade"
     type="optional"
     versionRange="[${jade_version},)"
     ordering="AFTER"

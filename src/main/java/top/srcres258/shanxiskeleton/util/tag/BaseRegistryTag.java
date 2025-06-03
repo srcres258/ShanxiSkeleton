@@ -28,7 +28,7 @@ public abstract class BaseRegistryTag<T> implements ITag<T> {
 
         registry = getRegistry();
 
-        return registry.getHolder(registry.getId(value))
+        return registry.get(registry.getId(value))
                 .map(ref -> ref.is(holderSet.key())).orElse(false);
 
     }

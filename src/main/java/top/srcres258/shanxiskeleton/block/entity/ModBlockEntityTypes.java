@@ -26,19 +26,13 @@ public class ModBlockEntityTypes {
     // Just pass `null` to `dataType` parameter since it is not used by our BlockEntity.
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WitherSkeletonProducerBlockEntity>>
     WITHER_SKELETON_PRODUCER = BLOCK_ENTITIES.register("wither_skeleton_producer",
-            () -> BlockEntityType.Builder.of(WitherSkeletonProducerBlockEntity::new,
-                            ModBlocks.WITHER_SKELETON_PRODUCER.get())
-                    .build(null));
+            () -> new BlockEntityType<>(WitherSkeletonProducerBlockEntity::new, ModBlocks.WITHER_SKELETON_PRODUCER.get()));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WitherSkeletonBreederBlockEntity>>
     WITHER_SKELETON_BREEDER = BLOCK_ENTITIES.register("wither_skeleton_breeder",
-            () -> BlockEntityType.Builder.of(WitherSkeletonBreederBlockEntity::new,
-                            ModBlocks.WITHER_SKELETON_BREEDER.get())
-                    .build(null));
+            () -> new BlockEntityType<>(WitherSkeletonBreederBlockEntity::new, ModBlocks.WITHER_SKELETON_BREEDER.get()));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WitherSkeletonSlaughtererBlockEntity>>
     WITHER_SKELETON_SLAUGHTERER = BLOCK_ENTITIES.register("wither_skeleton_slaughterer",
-            () -> BlockEntityType.Builder.of(WitherSkeletonSlaughtererBlockEntity::new,
-                            ModBlocks.WITHER_SKELETON_SLAUGHTERER.get())
-                    .build(null));
+            () -> new BlockEntityType<>(WitherSkeletonSlaughtererBlockEntity::new, ModBlocks.WITHER_SKELETON_SLAUGHTERER.get()));
 
     public static void register(@NotNull IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

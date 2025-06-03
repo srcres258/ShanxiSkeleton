@@ -7,11 +7,11 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.ChestRenderer;
 import net.minecraft.client.renderer.entity.WitherSkeletonRenderer;
+import net.minecraft.client.renderer.entity.state.SkeletonRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -55,7 +55,7 @@ public class WitherSkeletonProducerBlockEntityRenderer extends WitherSkeletonBlo
             int packedOverlay
     ) {
         WitherSkeletonRenderer witherSkeletonRenderer;
-        WitherSkeleton witherSkeleton;
+        SkeletonRenderState renderState;
         ChestRenderer<ChestBlockEntity> chestRenderer;
         ChestBlockEntity chest;
         Direction direction;
@@ -75,7 +75,7 @@ public class WitherSkeletonProducerBlockEntityRenderer extends WitherSkeletonBlo
         // --- Render wither skeletons ---
         if (blockEntity.hasWitherSkeleton()) {
             witherSkeletonRenderer = getWitherSkeletonRenderer();
-            witherSkeleton = getWitherSkeleton();
+            renderState = getWitherSkeletonRenderState();
 
             renderCount = getRenderingWitherSkeletonCount(blockEntity);
 
@@ -86,7 +86,7 @@ public class WitherSkeletonProducerBlockEntityRenderer extends WitherSkeletonBlo
                 poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
                 poseStack.translate(vec.x, vec.y, vec.z);
                 poseStack.scale(0.3F, 0.3F, 0.3F);
-                witherSkeletonRenderer.render(witherSkeleton, 0F, 1F, poseStack, multiBufferSource, packedLight);
+                witherSkeletonRenderer.render(renderState, poseStack, multiBufferSource, packedLight);
                 poseStack.popPose();
             }
         }

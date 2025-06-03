@@ -141,14 +141,6 @@ dependencies {
     testCompileOnly "org.projectlombok:lombok:1.18.38"
     testAnnotationProcessor "org.projectlombok:lombok:1.18.38"
 
-    // compile against the JEI API but do not include it at runtime
-    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
-    // at runtime, use the full JEI jar for NeoForge
-    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
-
-    implementation "maven.modrinth:the-one-probe:${theoneprobe_version}"
-
-    // TODO: Add compatilibity for jade mod.
     implementation "maven.modrinth:jade:${jade_version}"
 }
 
@@ -167,8 +159,6 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_version            : getVersion(),
             mod_authors            : mod_authors,
             mod_description        : mod_description,
-            jei_version            : jei_version,
-            theoneprobe_version    : theoneprobe_version,
             jade_version           : jade_version
     ]
     inputs.properties replaceProperties

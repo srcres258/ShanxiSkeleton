@@ -5,6 +5,8 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.WitherSkeletonRenderer;
+import net.minecraft.client.renderer.entity.state.SkeletonRenderState;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.level.Level;
@@ -20,6 +22,7 @@ import java.util.Objects;
 public class WitherSkeletonBlockEntityRenderer<T extends BaseMachineBlockEntity> extends BaseMachineBlockEntityRenderer<T> {
     private WeakReference<WitherSkeletonRenderer> witherSkeletonRendererCache = new WeakReference<>(null);
     private WeakReference<WitherSkeleton> witherSkeletonCache = new WeakReference<>(null);
+    private WeakReference<SkeletonRenderState> witherSkeletonRenderStateCache = new WeakReference<>(null);
 
     public WitherSkeletonBlockEntityRenderer(@NotNull BlockEntityRendererProvider.Context context) {
         super(context);
@@ -62,11 +65,29 @@ public class WitherSkeletonBlockEntityRenderer<T extends BaseMachineBlockEntity>
             if (level == null) {
                 throw new IllegalStateException("Calling getWitherSkeleton when not in a level.");
             }
-            witherSkeleton = Objects.requireNonNull(EntityType.WITHER_SKELETON.create(level),
+            witherSkeleton = Objects.requireNonNull(EntityType.WITHER_SKELETON.create(level, EntitySpawnReason.LOAD),
                     "Failed to create WitherSkeleton entity.");
             RenderHelper.resetLivingEntityForRendering(witherSkeleton);
             witherSkeletonCache = new WeakReference<>(witherSkeleton);
         }
         return witherSkeleton;
+    }
+
+    @NotNull
+    protected SkeletonRenderState getWitherSkeletonRenderState() {
+        SkeletonRenderState state;
+        WitherSkeletonRenderer renderer;
+        WitherSkeleton skeleton;
+
+        renderer = getWitherSkeletonRenderer();
+        state = witherSkeletonRenderStateCache.get();
+        if (state == null) {
+            state = renderer.createRenderState();
+            witherSkeletonRenderStateCache = new WeakReference<>(state);
+        }
+        skeleton = getWitherSkeleton();
+        renderer.extractRenderState(skeleton, state, 0F);
+
+        return state;
     }
 }

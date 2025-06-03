@@ -36,7 +36,7 @@ public class TagFactory {
             if (id == null) {
                 return nullIfNotFound ? null : EMPTY_BLOCK_TAG;
             }
-            tag = BuiltInRegistries.BLOCK.getTag(TagKey.create(Registries.BLOCK, id));
+            tag = BuiltInRegistries.BLOCK.get(TagKey.create(Registries.BLOCK, id));
             if (tag.isEmpty()) {
                 return nullIfNotFound ? null : EMPTY_BLOCK_TAG;
             }
@@ -49,7 +49,7 @@ public class TagFactory {
         if (!BuiltInRegistries.BLOCK.containsKey(id)) {
             return nullIfNotFound ? null : EMPTY_BLOCK_TAG;
         }
-        return new SingleElementTag<>(id, BuiltInRegistries.BLOCK.get(id));
+        return new SingleElementTag<>(id, BuiltInRegistries.BLOCK.getValue(id));
     }
 
     @NotNull
@@ -61,7 +61,7 @@ public class TagFactory {
     public static ITag<Block> getBlockTag(@NotNull ResourceLocation name, boolean nullIfNotFound) {
         Optional<HolderSet.Named<Block>> tag;
 
-        tag = BuiltInRegistries.BLOCK.getTag(BlockTags.create(name));
+        tag = BuiltInRegistries.BLOCK.get(BlockTags.create(name));
         if (tag.isEmpty()) {
             return nullIfNotFound ? null : EMPTY_BLOCK_TAG;
         }
@@ -83,7 +83,7 @@ public class TagFactory {
             if (id == null) {
                 return nullIfNotFound ? null : EMPTY_ITEM_TAG;
             }
-            tag = BuiltInRegistries.ITEM.getTag(TagKey.create(Registries.ITEM, id));
+            tag = BuiltInRegistries.ITEM.get(TagKey.create(Registries.ITEM, id));
             if (tag.isEmpty()) {
                 return nullIfNotFound ? null : EMPTY_ITEM_TAG;
             }
@@ -96,7 +96,7 @@ public class TagFactory {
         if (!BuiltInRegistries.ITEM.containsKey(id)) {
             return nullIfNotFound ? null : EMPTY_ITEM_TAG;
         }
-        return new SingleElementTag<>(id, BuiltInRegistries.ITEM.get(id));
+        return new SingleElementTag<>(id, BuiltInRegistries.ITEM.getValue(id));
     }
 
     @NotNull
@@ -108,7 +108,7 @@ public class TagFactory {
     public static ITag<Item> getItemTag(@NotNull ResourceLocation name, boolean nullIfNotFound) {
         Optional<HolderSet.Named<Item>> tag;
 
-        tag = BuiltInRegistries.ITEM.getTag(TagKey.create(Registries.ITEM, name));
+        tag = BuiltInRegistries.ITEM.get(TagKey.create(Registries.ITEM, name));
         if (tag.isEmpty()) {
             return nullIfNotFound ? null : EMPTY_ITEM_TAG;
         }
@@ -130,7 +130,7 @@ public class TagFactory {
             if (id == null) {
                 return nullIfNotFound ? null : EMPTY_FLUID_TAG;
             }
-            tag = BuiltInRegistries.FLUID.getTag(TagKey.create(Registries.FLUID, id));
+            tag = BuiltInRegistries.FLUID.get(TagKey.create(Registries.FLUID, id));
             if (tag.isEmpty()) {
                 return nullIfNotFound ? null : EMPTY_FLUID_TAG;
             }
@@ -143,7 +143,7 @@ public class TagFactory {
         if (!BuiltInRegistries.FLUID.containsKey(id)) {
             return nullIfNotFound ? null : EMPTY_FLUID_TAG;
         }
-        return new SingleElementTag<>(id, BuiltInRegistries.FLUID.get(id));
+        return new SingleElementTag<>(id, BuiltInRegistries.FLUID.getValue(id));
     }
 
     @NotNull
@@ -155,7 +155,7 @@ public class TagFactory {
     public static ITag<Fluid> getFluidTag(@NotNull ResourceLocation name, boolean nullIfNotFound) {
         Optional<HolderSet.Named<Fluid>> tag;
 
-        tag = BuiltInRegistries.FLUID.getTag(TagKey.create(Registries.FLUID, name));
+        tag = BuiltInRegistries.FLUID.get(TagKey.create(Registries.FLUID, name));
         if (tag.isEmpty()) {
             return nullIfNotFound ? null : EMPTY_FLUID_TAG;
         }

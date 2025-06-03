@@ -4,7 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import top.srcres258.shanxiskeleton.block.entity.IDroppable;
@@ -25,7 +25,7 @@ import top.srcres258.shanxiskeleton.block.entity.custom.BaseMachineBlockEntity;
 import java.util.Objects;
 
 public abstract class BaseMachineBlock extends BaseEntityBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
 
     protected BaseMachineBlock(@NotNull Properties properties) {
         super(properties);
@@ -82,7 +82,7 @@ public abstract class BaseMachineBlock extends BaseEntityBlock {
 
     @Override
     @NotNull
-    protected ItemInteractionResult useItemOn(
+    protected InteractionResult useItemOn(
             @NotNull ItemStack stack,
             @NotNull BlockState state,
             @NotNull Level level,
@@ -99,11 +99,11 @@ public abstract class BaseMachineBlock extends BaseEntityBlock {
                 if (!level.isClientSide()) {
                     player.openMenu(Objects.requireNonNull(machine.createMenuProvider(), "The BaseMachineBlockEntity " +
                             "has a menu but its createMenuProvider method returned null."), pos);
-                    return ItemInteractionResult.CONSUME;
+                    return InteractionResult.CONSUME;
                 }
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS_SERVER;
             }
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
 
         throw new IllegalStateException(String.format("The BlockEntity at %s is not an instance of " +

@@ -7,9 +7,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BedRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.WitherSkeletonRenderer;
+import net.minecraft.client.renderer.entity.state.SkeletonRenderState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -50,7 +50,7 @@ public class WitherSkeletonBreederBlockEntityRenderer extends WitherSkeletonBloc
             int packedOverlay
     ) {
         WitherSkeletonRenderer witherSkeletonRenderer;
-        WitherSkeleton witherSkeleton;
+        SkeletonRenderState renderState;
         int renderCount, i;
         Vec3 vec;
         Direction direction;
@@ -70,7 +70,7 @@ public class WitherSkeletonBreederBlockEntityRenderer extends WitherSkeletonBloc
         // --- Render wither skeletons ---
         if (blockEntity.hasWitherSkeleton()) {
             witherSkeletonRenderer = getWitherSkeletonRenderer();
-            witherSkeleton = getWitherSkeleton();
+            renderState = getWitherSkeletonRenderState();
 
             renderCount = getRenderingWitherSkeletonCount(blockEntity);
 
@@ -82,7 +82,7 @@ public class WitherSkeletonBreederBlockEntityRenderer extends WitherSkeletonBloc
                 poseStack.translate(vec.x, vec.y, vec.z);
                 poseStack.scale(0.3F, 0.3F, 0.3F);
                 poseStack.mulPose(Axis.YP.rotationDegrees(WITHER_SKELETON_ROTATION_ANGLES[i]));
-                witherSkeletonRenderer.render(witherSkeleton, 0F, 1F, poseStack, bufferSource, packedLight);
+                witherSkeletonRenderer.render(renderState, poseStack, bufferSource, packedLight);
                 poseStack.popPose();
             }
         }

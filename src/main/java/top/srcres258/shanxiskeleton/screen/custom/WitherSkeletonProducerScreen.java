@@ -1,6 +1,7 @@
 package top.srcres258.shanxiskeleton.screen.custom;
 
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -36,17 +37,17 @@ public class WitherSkeletonProducerScreen extends BaseMachineScreen<WitherSkelet
     @Override
     protected void renderBg(@NotNull GuiGraphics guiGraphics, float v, int i, int i1) {
         RenderHelper.setShaderTexture(0, GUI_TEXTURE);
-        guiGraphics.blit(GUI_TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(RenderType::guiTextured, GUI_TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight, 256, 256);
         renderProgressBar(guiGraphics);
     }
 
     private void renderProgressBar(@NotNull GuiGraphics guiGraphics) {
         if (getMenu().isCrafting()) {
             RenderHelper.setShaderTexture(0, GUI_TEXTURE);
-            guiGraphics.blit(GUI_TEXTURE, leftPos + 48, topPos + 20, 176, 0,
-                    getMenu().getScaledProgress(), PROGRESS_BAR_PIXEL_HEIGHT);
-            guiGraphics.blit(GUI_TEXTURE, leftPos + 48, topPos + 39, 176, 0,
-                    getMenu().getScaledRoseProgress(), PROGRESS_BAR_PIXEL_HEIGHT);
+            guiGraphics.blit(RenderType::guiTextured, GUI_TEXTURE, leftPos + 48, topPos + 20, 176, 0,
+                    getMenu().getScaledProgress(), PROGRESS_BAR_PIXEL_HEIGHT, 256, 256);
+            guiGraphics.blit(RenderType::guiTextured, GUI_TEXTURE, leftPos + 48, topPos + 39, 176, 0,
+                    getMenu().getScaledRoseProgress(), PROGRESS_BAR_PIXEL_HEIGHT, 256, 256);
         }
     }
 

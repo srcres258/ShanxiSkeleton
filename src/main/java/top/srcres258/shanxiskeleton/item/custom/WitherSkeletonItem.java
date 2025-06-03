@@ -7,9 +7,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -84,7 +84,7 @@ public class WitherSkeletonItem extends Item {
                 }
 
                 spawnedMob = WITHER_SKELETON_ENTITY_TYPE.spawn(serverLevel, itemStack, player, targetPos,
-                        MobSpawnType.SPAWN_EGG, true,
+                        EntitySpawnReason.SPAWN_ITEM_USE, true,
                         !Objects.equals(blockPos, targetPos) && direction == Direction.UP);
                 if (spawnedMob != null) {
                     itemStack.shrink(1);

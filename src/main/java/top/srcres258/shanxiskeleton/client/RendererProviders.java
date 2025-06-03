@@ -17,7 +17,7 @@ public class RendererProviders {
     @NotNull
     public static EntityRendererProvider.Context createEntityRendererContext() {
         return new EntityRendererProvider.Context(MC.getEntityRenderDispatcher(), MC.getItemRenderer(),
-                MC.getBlockRenderer(), MC.gameRenderer.itemInHandRenderer, MC.getResourceManager(),
-                MC.getEntityModels(), MC.font);
+                MC.getMapRenderer(), MC.getBlockRenderer(), MC.getResourceManager(), MC.getEntityModels(),
+                MC.getEquipmentModels(), MC.font);
     }
 }

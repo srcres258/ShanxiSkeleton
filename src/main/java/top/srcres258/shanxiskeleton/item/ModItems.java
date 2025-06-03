@@ -17,18 +17,18 @@ public class ModItems {
     /**
      * 凋灵骷髅捕捉器（Wither Skeleton Catcher）
      */
-    public static final DeferredItem<Item> WITHER_SKELETON_CATCHER = ITEMS.register("wither_skeleton_catcher",
-            () -> new WitherSkeletonCatcherItem(new Item.Properties().durability(256).stacksTo(1)));
+    public static final DeferredItem<Item> WITHER_SKELETON_CATCHER = ITEMS.registerItem("wither_skeleton_catcher",
+            WitherSkeletonCatcherItem::new, new Item.Properties().durability(256).stacksTo(1));
     /**
      * 凋灵骷髅（Wither Skeleton）
      */
-    public static final DeferredItem<Item> WITHER_SKELETON = ITEMS.register("wither_skeleton",
-            () -> new WitherSkeletonItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> WITHER_SKELETON = ITEMS.registerItem("wither_skeleton",
+            WitherSkeletonItem::new, new Item.Properties().stacksTo(16));
     /**
      * 小块煤炭（Tiny Coal）
      */
-    public static final DeferredItem<Item> TINY_COAL = ITEMS.register("tiny_coal",
-            () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final DeferredItem<Item> TINY_COAL = ITEMS.registerItem("tiny_coal",
+            Item::new, new Item.Properties().stacksTo(64));
 
     public static void register(@NotNull IEventBus eventBus) {
         ITEMS.register(eventBus);

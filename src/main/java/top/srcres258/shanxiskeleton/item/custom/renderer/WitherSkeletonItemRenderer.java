@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.WitherSkeletonRenderer;
+import net.minecraft.client.renderer.entity.state.SkeletonRenderState;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -40,10 +42,11 @@ public class WitherSkeletonItemRenderer extends ItemRenderer {
     ) {
         Level level;
         EntityRendererProvider.Context renderContext;
-        Map<EntityType<?>, EntityRenderer<?>> entityRendererMap;
-        EntityRenderer<?> entityRenderer;
+        Map<EntityType<?>, EntityRenderer<?, ?>> entityRendererMap;
+        EntityRenderer<?, ?> entityRenderer;
         ItemStack missingStack;
         WitherSkeleton skeletonMob;
+        SkeletonRenderState renderState;
 
         level = minecraft.level;
         if (level != null) {
@@ -64,8 +67,11 @@ public class WitherSkeletonItemRenderer extends ItemRenderer {
                 }
 
                 if (skeletonRenderer != null) {
+                    renderState = skeletonRenderer.createRenderState();
+                    skeletonRenderer.extractRenderState(skeletonMob, renderState, 0F);
+
                     poseStack.pushPose();
-                    skeletonRenderer.render(skeletonMob, 0F, 1F, poseStack, buffer, packedLight);
+                    skeletonRenderer.render(renderState, poseStack, buffer, packedLight);
                     poseStack.popPose();
                     return;
                 }
@@ -81,7 +87,7 @@ public class WitherSkeletonItemRenderer extends ItemRenderer {
     private void createSkeletonMob(@NotNull Level level) {
         WitherSkeleton skeleton;
 
-        skeleton = WITHER_SKELETON_ENTITY_TYPE.create(level);
+        skeleton = WITHER_SKELETON_ENTITY_TYPE.create(level, EntitySpawnReason.LOAD);
         if (skeleton != null) {
             RenderHelper.resetLivingEntityForRendering(skeleton);
             skeletonMobCache = new WeakReference<>(skeleton);
