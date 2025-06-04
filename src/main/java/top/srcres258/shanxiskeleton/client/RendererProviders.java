@@ -3,6 +3,7 @@ package top.srcres258.shanxiskeleton.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.resources.model.EquipmentAssetManager;
 import org.jetbrains.annotations.NotNull;
 
 public class RendererProviders {
@@ -11,13 +12,14 @@ public class RendererProviders {
     @NotNull
     public static BlockEntityRendererProvider.Context createBlockEntityRendererContext() {
         return new BlockEntityRendererProvider.Context(MC.getBlockEntityRenderDispatcher(), MC.getBlockRenderer(),
-                MC.getItemRenderer(), MC.getEntityRenderDispatcher(), MC.getEntityModels(), MC.font);
+                MC.getItemModelResolver(), MC.getItemRenderer(), MC.getEntityRenderDispatcher(), MC.getEntityModels(),
+                MC.font);
     }
 
     @NotNull
     public static EntityRendererProvider.Context createEntityRendererContext() {
-        return new EntityRendererProvider.Context(MC.getEntityRenderDispatcher(), MC.getItemRenderer(),
+        return new EntityRendererProvider.Context(MC.getEntityRenderDispatcher(), MC.getItemModelResolver(),
                 MC.getMapRenderer(), MC.getBlockRenderer(), MC.getResourceManager(), MC.getEntityModels(),
-                MC.getEquipmentModels(), MC.font);
+                new EquipmentAssetManager(), MC.font);
     }
 }

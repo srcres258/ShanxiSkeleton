@@ -90,7 +90,9 @@ neoForge {
         }
 
         data {
-            data()
+            // To simplify the implementation of data generators, we only provide client data generation
+            // but generate both client and server data during this process.
+            clientData()
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
@@ -140,6 +142,11 @@ dependencies {
 
     testCompileOnly "org.projectlombok:lombok:1.18.38"
     testAnnotationProcessor "org.projectlombok:lombok:1.18.38"
+
+    // compile against the JEI API but do not include it at runtime
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    // at runtime, use the full JEI jar for NeoForge
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
     implementation "maven.modrinth:jade:${jade_version}"
 }

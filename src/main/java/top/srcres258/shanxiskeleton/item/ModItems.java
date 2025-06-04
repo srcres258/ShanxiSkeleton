@@ -1,8 +1,10 @@
 package top.srcres258.shanxiskeleton.item;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -10,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import top.srcres258.shanxiskeleton.ShanxiSkeleton;
 import top.srcres258.shanxiskeleton.item.custom.WitherSkeletonCatcherItem;
 import top.srcres258.shanxiskeleton.item.custom.WitherSkeletonItem;
+import top.srcres258.shanxiskeleton.item.custom.renderer.WitherSkeletonSpecialRenderer;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ShanxiSkeleton.MOD_ID);
@@ -34,9 +37,7 @@ public class ModItems {
         ITEMS.register(eventBus);
     }
 
-    public static void registerClientExtensions(@NotNull RegisterClientExtensionsEvent event) {
-        event.registerItem(WitherSkeletonItem.ClientItemExtensions.INSTANCE, WITHER_SKELETON);
-    }
+    public static void registerClientExtensions(@NotNull RegisterClientExtensionsEvent event) {}
 
     /**
      * 构建模组创造模式物品栏中的内容。
@@ -48,5 +49,10 @@ public class ModItems {
         output.accept(WITHER_SKELETON_CATCHER);
         output.accept(WITHER_SKELETON);
         output.accept(TINY_COAL);
+    }
+
+    public static void registerSpecialModelRenderer(@NotNull RegisterSpecialModelRendererEvent event) {
+        event.register(ResourceLocation.fromNamespaceAndPath(ShanxiSkeleton.MOD_ID, "wither_skeleton"),
+                WitherSkeletonSpecialRenderer.Unbaked.MAP_CODEC);
     }
 }

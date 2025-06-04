@@ -1,6 +1,5 @@
 package top.srcres258.shanxiskeleton.item.custom;
 
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -21,29 +20,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
 import top.srcres258.shanxiskeleton.ShanxiSkeleton;
-import top.srcres258.shanxiskeleton.item.custom.renderer.WitherSkeletonItemRenderer;
 import top.srcres258.shanxiskeleton.util.SoundHelper;
 
 import java.util.Objects;
 
 public class WitherSkeletonItem extends Item {
-    public static class ClientItemExtensions implements IClientItemExtensions {
-        public static final ClientItemExtensions INSTANCE = new ClientItemExtensions();
-
-        private final WitherSkeletonItemRenderer renderer = new WitherSkeletonItemRenderer();
-
-        private ClientItemExtensions() {}
-
-        @Override
-        @NotNull
-        public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-            return renderer.getRendererSupplier().get();
-        }
-    }
-
     private static final EntityType<WitherSkeleton> WITHER_SKELETON_ENTITY_TYPE = EntityType.WITHER_SKELETON;
 
     public WitherSkeletonItem(@NotNull Properties properties) {

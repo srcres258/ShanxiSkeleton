@@ -11,6 +11,7 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import org.jetbrains.annotations.NotNull;
@@ -67,6 +68,7 @@ public class ShanxiSkeleton {
             modEventBus.addListener(this::registerClientExtensions);
             modEventBus.addListener(this::registerRenderers);
             modEventBus.addListener(this::registerMenuScreens);
+            modEventBus.addListener(this::registerSpecialModelRenderer);
         }
     }
 
@@ -115,5 +117,9 @@ public class ShanxiSkeleton {
 
     private void registerMenuScreens(@NotNull RegisterMenuScreensEvent event) {
         ModMenuTypes.registerMenuScreens(event);
+    }
+
+    private void registerSpecialModelRenderer(@NotNull RegisterSpecialModelRendererEvent event) {
+        ModItems.registerSpecialModelRenderer(event);
     }
 }
