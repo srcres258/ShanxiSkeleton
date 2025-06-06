@@ -42,7 +42,7 @@ description='''${mod_description}'''
 
 # Jade
 [[dependencies.${mod_id}]]
-    modId="jare"
+    modId="jade"
     type="optional"
     versionRange="[${jade_version},)"
     ordering="AFTER"
